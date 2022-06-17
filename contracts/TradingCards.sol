@@ -2,7 +2,7 @@
 pragma solidity ^0.8.12;
 
 import "./utils/SafeMath.sol";
-import "./utils/Strings.sol";
+import "./utils/StringsOpenZeppelin.sol";
 import "./utils/Ownable.sol";
 
 
@@ -52,7 +52,7 @@ contract TradingCards is Ownable {
     }
 
     function _createRandomCard(address _player) internal {
-        string memory thisCardName = string.concat(cardDefaultName, Strings.toString(cards.length));
+        string memory thisCardName = string.concat(cardDefaultName, StringsOpenZeppelin.toString(cards.length));
         // uint16 randHp = uint16(_randMod(statsDigits));
         // uint16 randAtk = uint16(_randMod(statsDigits));
         // uint16 randDef = uint16(_randMod(statsDigits));

@@ -76,16 +76,16 @@ contract CardHelper is TradingCards {
   }
 
   /**
-  * @param stat - 0 - health, 1 - attack, 2 - defense
+  * @param stat - 1 - health, 2 - attack, 3 - defense
   * @dev upgrades an especific card stat
   */
   function upgradeCardStat(uint _cardId, uint8 stat) payable external onlyOwnerOf(_cardId) returns(uint16) {
     require(msg.value == upgradeCardStatFee);
-    require(stat == 0 || stat == 1 || stat == 2);
-    if(stat == 0) {
+    require(stat == 1 || stat == 2 || stat == 3);
+    if(stat == 1) {
       cards[_cardId].health = cards[_cardId].health.add(10);
       return cards[_cardId].health;
-    } else if (stat == 1) {
+    } else if (stat == 2) {
       cards[_cardId].attack = cards[_cardId].attack.add(10);
       return cards[_cardId].attack;
     } else {
