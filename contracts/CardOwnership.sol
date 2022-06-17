@@ -9,6 +9,8 @@ contract CardOwnership is CardGame, ERC721 {
 
   using SafeMath for uint256;
 
+  event Trade(address from, address to, uint256 tokenIdFrom, uint256 tokenIdTo);
+
   mapping (uint => address) cardApprovals;
 
   function balanceOf(address _owner) external view override returns (uint256) {
@@ -36,6 +38,7 @@ contract CardOwnership is CardGame, ERC721 {
     require (cardApprovals[_tokenIdFrom] == _to || cardApprovals[_tokenIdTo] == _from);
     _transfer(_from, _to, _tokenIdFrom);
     _transfer(_to, _from, _tokenIdTo);
+    emit Trade(_from, _to, _tokenIdFrom, _tokenIdTo);
   }
 
   function _approve(address _approved, uint256 _tokenId) internal virtual override   {
