@@ -9,7 +9,7 @@ contract CardGame is CardHelper {
     Card storage myCard = cards[_cardId];
     Card storage enemyCard = cards[_enemyCardId];
 
-    if(enemyCard.health - (myCard.attack - enemyCard.defense) <= myCard.health - (enemyCard.attack - myCard.defense)) {
+    if(int16(enemyCard.health) - (int16(myCard.attack) - int16(enemyCard.defense)) <= int16(myCard.health) - (int16(enemyCard.attack) - int16(myCard.defense))) {
       _upgradeCardStats(_cardId);
     } else {
       _upgradeCardStats(_enemyCardId);
